@@ -4,7 +4,7 @@ class Tracker
   has_many :tracker_statuses
   has_many :predef_issue_statuses, :through => :tracker_statuses
 
-  def issue_statuses_with_workflow_enhancements
+  def issue_statuses
     if @issue_statuses
       return @issue_statuses
     elsif new_record?
@@ -24,6 +24,5 @@ class Tracker
     @issue_statuses = IssueStatus.where(:id => ids).all.sort
   end
 
-  alias_method_chain :issue_statuses, :workflow_enhancements
 end
 
